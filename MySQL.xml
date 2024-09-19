@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<object>
+    <record name="test_xsql" desc="密钥管理表">
+        <column field="Id" type="int64" desc="自增ID"/>
+        <column field="DeviceID" type="string" desc="设备ID"/>
+        <column field="Hash" type="string" desc="密钥Hash"/>
+        <column field="Area" type="byte" desc="区域"/>
+        <column field="Type" type="int32" desc="加解密类型"/>
+        <column field="FileIndex" type="int32" desc="加解密类型"/>
+        <column field="Length" type="int32" desc="加解密类型"/>
+        <column field="Status" type="byte" desc="使用状态"/>
+        <column field="UpdatedTime" type="string" desc="更新时间"/>
+
+        <insert action="addKey" desc="增">
+            <fields>
+                <column field="DeviceID"/>
+                <column field="Area"/>
+                <column field="Type"/>
+                <column field="FileIndex"/>
+                <column field="Length"/>
+                <column field="Status"/>
+                <column field="Hash"/>
+            </fields>
+        </insert>
+
+        <delete action="deleteByID" desc="删">
+            <where>
+                <column field="DeviceID"/>
+            </where>
+        </delete>
+
+        <update action="updateByDeviceID" desc="改">
+            <where>
+                <column field="DeviceID"/>
+            </where>
+            <fields>
+                <column field="Hash"/>
+            </fields>
+        </update>
+
+        <select action="selectByDeviceID" desc="查">
+            <where>
+                <column field="DeviceID"/>
+            </where>
+            <fields>
+                <column field="Id"/>
+                <column field="DeviceID"/>
+                <column field="Hash"/>
+                <column field="Type"/>
+                <column field="Status"/>
+            </fields>
+        </select>
+
+    </record>
+</object>
